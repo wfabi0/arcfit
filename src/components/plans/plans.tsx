@@ -147,7 +147,7 @@ export default function Plans() {
           </p>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
+          {plans.map((plan) => (
             <Card
               key={plan.name}
               className={`relative bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 group hover:shadow-xl flex flex-col ${
@@ -191,7 +191,7 @@ export default function Plans() {
                 <ul className="space-y-2.5 flex-1">
                   {plan.beneficios
                     .slice(0, 4)
-                    .map((feature: any, featureIndex: number) => (
+                    .map((feature: string, featureIndex: number) => (
                       <li
                         key={featureIndex}
                         className="flex items-start gap-2.5"
