@@ -1,5 +1,5 @@
 import { currencyFormatter } from "@/utils/formatters";
-import { Check } from "lucide-react";
+import { Check, Star } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 
@@ -135,7 +135,7 @@ export default function Plans() {
           {plans.map((plan, index) => (
             <Card
               key={plan.name}
-              className={`relative bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 group hover:shadow-xl ${
+              className={`relative bg-gradient-to-br from-card to-card/50 backdrop-blur-sm border-2 group hover:shadow-xl flex flex-col ${
                 plan.popular
                   ? "border-primary shadow-lg scale-[1.02] ring-2 ring-primary/10"
                   : "border-border hover:border-primary/30 hover:scale-[1.02]"
@@ -143,8 +143,9 @@ export default function Plans() {
             >
               {plan.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-10">
-                  <span className="bg-primary from-primary to-primary/80 text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg">
-                    ⭐ Mais Popular
+                  <span className="bg-primary from-primary to-primary/80 text-primary-foreground px-4 py-1.5 rounded-full text-sm font-semibold shadow-lg flex items-center gap-1.5">
+                    <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                    Mais Popular
                   </span>
                 </div>
               )}
@@ -171,8 +172,8 @@ export default function Plans() {
                 </span>
               </CardHeader>
 
-              <CardContent className="space-y-6 px-6 pb-8">
-                <ul className="space-y-2.5">
+              <CardContent className="space-y-4 px-6 pb-8 flex-1 flex flex-col">
+                <ul className="space-y-2.5 flex-1">
                   {plan.beneficios
                     .slice(0, 4)
                     .map((feature: any, featureIndex: number) => (
@@ -196,9 +197,11 @@ export default function Plans() {
                   )}
                 </ul>
 
-                <Button className="w-full py-3 font-medium transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl">
-                  Assinar Agora
-                </Button>
+                <div className="mt-auto pt-4">
+                  <Button className="w-full py-3 font-medium transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl">
+                    Assinar Agora
+                  </Button>
+                </div>
               </CardContent>
             </Card>
           ))}
