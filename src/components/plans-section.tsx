@@ -1,15 +1,15 @@
 import { currencyFormatter } from "@/utils/formatters";
 import { Dialog } from "@radix-ui/react-dialog";
 import { Calendar, Check, Star, Wallet } from "lucide-react";
-import { Button } from "../ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Button } from "./ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import {
   DialogContent,
   DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "../ui/dialog";
+} from "./ui/dialog";
 
 type TipoPlano = "mensal" | "trimestral" | "semestral" | "anual";
 
@@ -133,7 +133,7 @@ const plans: Plan[] = [
   },
 ];
 
-export default function Plans() {
+export default function PlansSection() {
   return (
     <section id="planos" className="py-20 lg:py-28 border-1 border-t-zinc-800">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
