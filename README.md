@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ArcFit 🏋️‍♂️
 
-## Getting Started
+_Sistema completo de gestão para academias._
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🎯 Objetivo
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+O ArcFit é uma plataforma web moderna desenvolvida para otimizar a gestão completa de academias, oferecendo controle eficiente de membros, pagamentos, equipamentos e ocupação em tempo real através de três interfaces principais: Landing Page, Painel do Cliente e Painel Administrativo.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ⭐ Principais Funcionalidades
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 💼 Gestão Administrativa
 
-## Learn More
+- **Gestão de Membros**: CRUD completo com histórico e documentos
+- **Controle Financeiro**: Pagamentos, inadimplência e relatórios detalhados
+- **Gestão de Equipamentos**: Inventário, manutenção preventiva e disponibilidade
 
-To learn more about Next.js, take a look at the following resources:
+### 📊 Controle Operacional
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Ocupação em Tempo Real**: Monitoramento via sistema de catracas (Ideia)
+- **Relatórios Gerenciais**: Dashboards e analytics completos
+- **Sistema de Notificações**: Alertas automáticos por email/SMS (Ideia)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 🌐 Portal do Cliente
 
-## Deploy on Vercel
+- **Autoatendimento**: Dashboard pessoal e consulta de dados
+- **Acompanhamento**: Visualização de pagamentos e histórico
+- **Agendamentos**: Avaliações físicas e consulta de ocupação
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 🛠️ Tecnologias
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Frontend**: Next.js
+- **Banco de Dados**: PostgreSQL
+- **ORM**: Prisma
