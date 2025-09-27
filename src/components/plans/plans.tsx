@@ -1,7 +1,15 @@
 import { currencyFormatter } from "@/utils/formatters";
-import { Check, Star } from "lucide-react";
+import { Dialog } from "@radix-ui/react-dialog";
+import { Calendar, Check, Star, Wallet } from "lucide-react";
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import {
+  DialogContent,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "../ui/dialog";
 
 type TipoPlano = "mensal" | "trimestral" | "semestral" | "anual";
 
@@ -22,6 +30,13 @@ type Plan = {
   updated_at: string;
   popular?: boolean;
 };
+
+const duration = {
+  mensal: "30 dias",
+  trimestral: "90 dias",
+  semestral: "6 meses",
+  anual: "12 meses",
+} as const;
 
 const plans: Plan[] = [
   {
@@ -197,17 +212,80 @@ export default function Plans() {
                   )}
                 </ul>
 
-                <div className="mt-auto pt-4">
-                  <Button
-                    className={`w-full py-3 font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:cursor-pointer ${
-                      plan.popular
-                        ? "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground hover:scale-105"
-                        : "bg-gradient-to-r from-secondary to-secondary/80 hover:from-primary hover:to-primary/90 text-secondary-foreground hover:text-primary-foreground hover:scale-105"
-                    }`}
-                  >
-                    Assinar Agora
-                  </Button>
-                </div>
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <div className="mt-auto pt-4">
+                      <Button
+                        className={`w-full py-3 font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:cursor-pointer ${
+                          plan.popular
+                            ? "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground hover:scale-105"
+                            : "bg-gradient-to-r from-secondary to-secondary/80 hover:from-primary hover:to-primary/90 text-secondary-foreground hover:text-primary-foreground hover:scale-105"
+                        }`}
+                      >
+                        Assinar Agora
+                      </Button>
+                    </div>
+                  </DialogTrigger>
+                  <DialogContent>
+                    <DialogHeader>
+                      <DialogTitle className="text-center">
+                        {plan.name}
+                      </DialogTitle>
+                    </DialogHeader>
+                    <div className="px-4 space-y-6">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4 text-primary" />
+                          <span className="text-sm text-muted-foreground">
+                            Duração:{" "}
+                            <span className="capitalize font-medium text-foreground">
+                              {plan.tipo}
+                            </span>{" "}
+                            ({duration[plan.tipo]})
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Wallet className="w-4 h-4 text-primary" />
+                          <span className="text-lg font-bold text-foreground">
+                            {currencyFormatter(plan.valor)}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-4">
+                          Todos os Benefícios Inclusos:
+                        </h4>
+                        <ul className="space-y-3">
+                          {plan.beneficios.map((beneficio, index) => (
+                            <li key={index} className="flex items-start gap-3">
+                              <Check
+                                className="text-primary mt-0.5 flex-shrink-0"
+                                size={16}
+                              />
+                              <span className="text-sm text-muted-foreground leading-relaxed">
+                                {beneficio}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      <div className="pt-4 border-t">
+                        <p className="text-xs text-muted-foreground text-center">
+                          Horário de funcionamento:{" "}
+                          {plan.horario_permitido_inicio} às{" "}
+                          {plan.horario_permitido_fim}
+                        </p>
+                      </div>
+                    </div>
+                    <DialogFooter className="flex justify-center items-center">
+                      <Button className="transition hover:duration-150 hover:cursor-pointer">
+                        Continuar Pagamento
+                      </Button>
+                    </DialogFooter>
+                  </DialogContent>
+                </Dialog>
               </CardContent>
             </Card>
           ))}
