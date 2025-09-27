@@ -135,7 +135,7 @@ const plans: Plan[] = [
 
 export default function Plans() {
   return (
-    <section id="planos" className="py-20 lg:py-28">
+    <section id="planos" className="py-20 lg:py-28 border-1 border-t-zinc-800">
       <div className="container mx-auto px-6 sm:px-8 lg:px-12">
         <div className="text-center mb-16 lg:mb-20">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-6 text-balance">
