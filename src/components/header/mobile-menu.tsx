@@ -16,7 +16,7 @@ const navigation = [
   { name: "Sobre", href: "/#sobre" },
   { name: "Planos", href: "/#planos" },
   { name: "Vantagens", href: "/#vantagens" },
-  { name: "Galeria", href: "/#galeria" },
+  // { name: "Galeria", href: "/#galeria" },
 ] as const;
 
 export default function MobileMenu() {

@@ -7,8 +7,7 @@ const navigation = [
   { name: "Início", href: "/" },
   { name: "Sobre", href: "/#sobre" },
   { name: "Planos", href: "/#planos" },
-  // { name: "Vantagens", href: "/#vantagens" },
-  { name: "Galeria", href: "/#galeria" },
+  { name: "Vantagens", href: "/#vantagens" },
 ] as const;
 
 export default function Header() {
