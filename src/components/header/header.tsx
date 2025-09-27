@@ -3,6 +3,13 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 import MobileMenu from "./mobile-menu";
 
+const navigation = [
+  { name: "Início", href: "/" },
+  { name: "Planos", href: "/#planos" },
+  { name: "Sobre", href: "/#sobre" },
+  { name: "Vantagens", href: "/#vantagens" },
+] as const;
+
 export default function Header() {
   return (
     <header className="bg-black/20 w-full px-6 py-10 lg:px-10 border-1 border-b-zinc-800">
@@ -22,7 +29,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex">
-          <MobileMenu />
+          <MobileMenu navigation={navigation} />
         </div>
       </div>
 
@@ -41,16 +48,18 @@ export default function Header() {
             />
           </Link>
         </div>
-        <div className="flex-row grid grid-cols-3 md:gap-6 lg:gap-10 xl:gap-12 text-xl text-white font-semibold">
-          <Link href={"/"} className="transition hover:text-teal-500">
-            Início
-          </Link>
-          <Link href={"/#planos"} className="transition hover:text-teal-500">
-            Planos
-          </Link>
-          <Link href={"/#sobre"} className="transition hover:text-teal-500">
-            Sobre
-          </Link>
+        <div
+          className={`flex-row grid grid-cols-4 md:gap-6 lg:gap-10 xl:gap-12 text-xl text-white font-semibold`}
+        >
+          {navigation.map((item) => (
+            <Link
+              key={item.name}
+              href={item.href}
+              className="transition hover:text-teal-500"
+            >
+              {item.name}
+            </Link>
+          ))}
         </div>
         <Button className="bg-teal-700 hover:cursor-pointer hover:bg-teal-600 transition duration-200 px-10 py-5 text-xl font-thin text-white">
           FAÇA SUA MATRÍCULA
