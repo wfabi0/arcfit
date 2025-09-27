@@ -5,7 +5,7 @@ import MobileMenu from "./mobile-menu";
 
 export default function Header() {
   return (
-    <header className="bg-black/20 w-full px-6 py-10 lg:px-10">
+    <header className="bg-black/20 w-full px-6 py-10 lg:px-10 border-1 border-b-zinc-800">
       {/* Mobile */}
       <div className="flex md:hidden flex-row justify-between items-center">
         <div className="flex items-center">
@@ -52,7 +52,7 @@ export default function Header() {
             Sobre
           </Link>
         </div>
-        <Button className="bg-teal-700 hover:cursor-pointer hover:bg-teal-600 transition duration-200 px-10 py-5 text-xl font-thin">
+        <Button className="bg-teal-700 hover:cursor-pointer hover:bg-teal-600 transition duration-200 px-10 py-5 text-xl font-thin text-white">
           FAÇA SUA MATRÍCULA
         </Button>
       </div>
