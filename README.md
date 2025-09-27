@@ -33,3 +33,7 @@ O ArcFit é uma plataforma web moderna desenvolvida para otimizar a gestão comp
 - **Frontend**: Next.js
 - **Banco de Dados**: PostgreSQL
 - **ORM**: Prisma
+
+## 🎨 Recursos Visuais
+
+- **Imagens**: Todas as imagens utilizadas no projeto foram geradas por Inteligência Artificial (Google AI)
