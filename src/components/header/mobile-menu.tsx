@@ -11,11 +11,15 @@ import {
   SheetTrigger,
 } from "../ui/sheet";
 
-interface MobileMenuProps {
-  navigation: readonly { name: string; href: string }[];
-}
+const navigation = [
+  { name: "Início", href: "/" },
+  { name: "Sobre", href: "/#sobre" },
+  { name: "Planos", href: "/#planos" },
+  { name: "Vantagens", href: "/#vantagens" },
+  { name: "Galeria", href: "/#galeria" },
+] as const;
 
-export default function MobileMenu({ navigation }: MobileMenuProps) {
+export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleLinkClick = (href: string, e: React.MouseEvent) => {

@@ -5,9 +5,10 @@ import MobileMenu from "./mobile-menu";
 
 const navigation = [
   { name: "Início", href: "/" },
-  { name: "Planos", href: "/#planos" },
   { name: "Sobre", href: "/#sobre" },
-  { name: "Vantagens", href: "/#vantagens" },
+  { name: "Planos", href: "/#planos" },
+  // { name: "Vantagens", href: "/#vantagens" },
+  { name: "Galeria", href: "/#galeria" },
 ] as const;
 
 export default function Header() {
@@ -29,7 +30,7 @@ export default function Header() {
           </Link>
         </div>
         <div className="flex">
-          <MobileMenu navigation={navigation} />
+          <MobileMenu />
         </div>
       </div>
 
@@ -49,7 +50,7 @@ export default function Header() {
           </Link>
         </div>
         <div
-          className={`flex-row grid grid-cols-4 md:gap-6 lg:gap-10 xl:gap-12 text-xl text-white font-semibold`}
+          className={`flex-row grid grid-cols-5 md:gap-4 lg:gap-6 xl:gap-8 text-lg lg:text-xl text-white font-semibold`}
         >
           {navigation.map((item) => (
             <Link
