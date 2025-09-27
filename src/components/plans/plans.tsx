@@ -254,7 +254,7 @@ export default function Plans() {
 
                       <div>
                         <h4 className="text-sm font-semibold text-foreground mb-4">
-                          Todos os Benefícios Inclusos:
+                          Todos os {plan.beneficios.length} Benefícios Inclusos:
                         </h4>
                         <ul className="space-y-3">
                           {plan.beneficios.map((beneficio, index) => (
