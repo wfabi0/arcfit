@@ -129,7 +129,7 @@ export default function GallerySection() {
         </div>
 
         <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-          <DialogContent className="max-w-7xl w-[95vw] h-[95vh] p-6 bg-black/98 border-zinc-800 overflow-hidden">
+          <DialogContent className="w-[100%] p-6 bg-black/98 border-zinc-800 overflow-hidden">
             <DialogTitle className="sr-only">
               Galeria de Imagens - {galleryImages[current - 1]?.title}
             </DialogTitle>
