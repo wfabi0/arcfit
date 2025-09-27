@@ -130,8 +130,11 @@ html {
   scroll-behavior: smooth !important;
 }
 
-html {
-  scroll-behavior: auto;
+/* Garantir scroll suave em dispositivos móveis */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 html.smooth-scroll {
