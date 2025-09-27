@@ -120,3 +120,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 2rem;
+}
+
+* {
+  scroll-behavior: smooth !important;
+}
+
+html {
+  scroll-behavior: auto;
+}
+
+html.smooth-scroll {
+  scroll-behavior: smooth;
+}
+
+@supports (scroll-timeline: none) {
+  html {
+    scroll-timeline: --page-scroll block;
+    animation-timeline: --page-scroll;
+  }
+}
