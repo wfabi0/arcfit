@@ -198,7 +198,13 @@ export default function Plans() {
                 </ul>
 
                 <div className="mt-auto pt-4">
-                  <Button className="w-full py-3 font-medium transition-all duration-300 bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground shadow-lg hover:shadow-xl">
+                  <Button
+                    className={`w-full py-3 font-medium transition-all duration-300 shadow-lg hover:shadow-xl hover:cursor-pointer ${
+                      plan.popular
+                        ? "bg-gradient-to-r from-primary to-primary/90 hover:from-primary/90 hover:to-primary text-primary-foreground hover:scale-105"
+                        : "bg-gradient-to-r from-secondary to-secondary/80 hover:from-primary hover:to-primary/90 text-secondary-foreground hover:text-primary-foreground hover:scale-105"
+                    }`}
+                  >
                     Assinar Agora
                   </Button>
                 </div>
