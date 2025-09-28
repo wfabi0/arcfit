@@ -88,7 +88,7 @@ export function EquipmentAlerts() {
                   </p>
                 </div>
               </div>
-              <div className="justify-center items-center grid grid-cols-1 space-y-1.5">
+              <div className="justify-center items-center grid grid-cols-1 gap-y-1.5">
                 <Badge
                   variant={
                     alert.priority === "high" ? "destructive" : "outline"
@@ -100,7 +100,11 @@ export function EquipmentAlerts() {
                     ? "Média"
                     : "Baixa"}
                 </Badge>
-                <Button variant="ghost" size="sm">
+                <Button
+                  className="hover:cursor-pointer"
+                  variant="ghost"
+                  size="sm"
+                >
                   <Wrench className="w-3 h-3" />
                 </Button>
               </div>

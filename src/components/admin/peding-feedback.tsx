@@ -102,7 +102,7 @@ export function PendingFeedback() {
                 <Button
                   variant="ghost"
                   size="sm"
-                  className="text-xs px-3 py-1 h-7"
+                  className="text-xs px-3 py-1 h-7 hover:cursor-pointer"
                 >
                   Responder
                 </Button>
