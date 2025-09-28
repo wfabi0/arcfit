@@ -95,6 +95,18 @@ export default function AdminSidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const pathname = usePathname();
 
+  const isRouteActive = (href: string) => {
+    if (href === "/admin") {
+      return pathname === "/admin";
+    }
+    return pathname.startsWith(href);
+  };
+
+  const hasActiveChild = (children?: { href: string }[]) => {
+    if (!children) return false;
+    return children.some((child) => pathname === child.href);
+  };
+
   return (
     <div
       className={cn(
@@ -137,13 +149,20 @@ export default function AdminSidebar() {
               <Link
                 href={item.href}
                 className={cn(
-                  "flex items-center px-3 py-2 font-medium rounded-lg transition-colors",
-                  pathname === item.href
-                    ? "bg-sidebar-accent text-sidebar-accent-foreground"
-                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground"
+                  "flex items-center px-3 py-2 font-medium rounded-lg transition-all duration-200 group",
+                  isRouteActive(item.href) || hasActiveChild(item.children)
+                    ? "bg-primary text-primary-foreground shadow-sm border-l-4 border-primary-foreground/20"
+                    : "text-sidebar-foreground hover:bg-sidebar-accent hover:text-sidebar-accent-foreground hover:shadow-md hover:scale-[1.02] hover:border-l-4 hover:border-primary/30"
                 )}
               >
-                <item.icon className="w-5 h-5 flex-shrink-0" />
+                <item.icon
+                  className={cn(
+                    "w-5 h-5 flex-shrink-0 transition-all duration-200",
+                    isRouteActive(item.href) || hasActiveChild(item.children)
+                      ? "text-primary-foreground"
+                      : "group-hover:scale-110 group-hover:text-primary"
+                  )}
+                />
                 {!collapsed && (
                   <span className="ml-3 truncate">{item.name}</span>
                 )}
@@ -155,7 +174,10 @@ export default function AdminSidebar() {
                       key={child.name}
                       href={child.href}
                       className={cn(
-                        "block px-3 py-1 text-sm text-muted-foreground hover:text-sidebar-foreground transition-colors"
+                        "block px-3 py-1 text-sm rounded-md transition-all duration-200 relative",
+                        pathname === child.href
+                          ? "text-primary font-medium bg-primary/10 border-l-2 border-primary"
+                          : "text-muted-foreground hover:text-sidebar-foreground hover:bg-sidebar-accent/50 hover:translate-x-1 hover:border-l-2 hover:border-primary/50"
                       )}
                     >
                       {child.name}
