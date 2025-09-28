@@ -64,38 +64,40 @@ export default function TestimonialsSection() {
             align: "start",
             loop: true,
           }}
-          className="w-full max-w-xl mx-auto mt-12"
+          className="w-full max-w-xl mx-auto mt-12 px-12 md:px-0"
         >
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index}>
                 <div className="p-1">
-                  <Card>
-                    <CardContent className="flex flex-col items-center justify-center p-6 text-center">
-                      <Image
-                        alt={testimonial.name}
-                        className="rounded-full mb-4"
-                        height={80}
-                        src={testimonial.avatar}
-                        style={{
-                          aspectRatio: "80/80",
-                          objectFit: "cover",
-                        }}
-                        width={80}
-                      />
-                      <div className="flex items-center gap-1 mb-2">
-                        {Array.from({ length: 5 }).map((_, i) => (
-                          <Star
-                            key={i}
-                            className={`size-5 ${
-                              i < testimonial.rating
-                                ? "text-primary fill-primary"
-                                : "text-muted-foreground/50"
-                            }`}
-                          />
-                        ))}
+                  <Card className="min-h-[400px] md:min-h-[350px]">
+                    <CardContent className="flex flex-col items-center justify-between p-8 text-center h-full min-h-[400px] md:min-h-[350px]">
+                      <div className="flex flex-col items-center">
+                        <Image
+                          alt={testimonial.name}
+                          className="rounded-full mb-6"
+                          height={80}
+                          src={testimonial.avatar}
+                          style={{
+                            aspectRatio: "80/80",
+                            objectFit: "cover",
+                          }}
+                          width={80}
+                        />
+                        <div className="flex items-center gap-1 mb-6">
+                          {Array.from({ length: 5 }).map((_, i) => (
+                            <Star
+                              key={i}
+                              className={`size-5 ${
+                                i < testimonial.rating
+                                  ? "text-primary fill-primary"
+                                  : "text-muted-foreground/50"
+                              }`}
+                            />
+                          ))}
+                        </div>
                       </div>
-                      <blockquote className="text-lg font-semibold leading-snug mb-4">
+                      <blockquote className="text-lg font-semibold leading-relaxed mb-6 flex-1 flex items-center max-w-sm">
                         "{testimonial.quote}"
                       </blockquote>
                       <p className="text-sm font-medium text-muted-foreground">
@@ -107,8 +109,8 @@ export default function TestimonialsSection() {
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          <CarouselPrevious className="md:-left-12 left-2" />
+          <CarouselNext className="md:-right-12 right-2" />
         </Carousel>
       </div>
     </section>
