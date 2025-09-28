@@ -21,13 +21,11 @@ export default function AdminPage() {
           </div>
 
           <DashboardCards />
+          <OccupancyChart />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <OccupancyChart />
-            <div className="space-y-6">
-              <EquipmentAlerts />
-              <PendingFeedback />
-            </div>
+            <EquipmentAlerts />
+            <PendingFeedback />
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">

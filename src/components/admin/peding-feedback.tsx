@@ -43,7 +43,7 @@ const pendingFeedback = [
 
 export function PendingFeedback() {
   return (
-    <Card className="bg-card border-border h-fit">
+    <Card className="bg-card border-border">
       <CardHeader className="pb-3 sm:pb-6">
         <CardTitle className="flex items-center space-x-2 text-foreground text-base sm:text-lg">
           <MessageSquare className="w-4 h-4 sm:w-5 sm:h-5 text-chart-1" />

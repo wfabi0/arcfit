@@ -44,7 +44,7 @@ const chartConfig = {
 
 export default function OccupancyChart() {
   return (
-    <Card className="bg-card border-border h-fit">
+    <Card className="bg-card border-border">
       <CardHeader>
         <CardTitle className="text-foreground text-lg">
           Ocupação em Tempo Real
