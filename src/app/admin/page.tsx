@@ -1,5 +1,7 @@
 import AdminHeader from "@/components/admin/admin-header";
 import AdminSidebar from "@/components/admin/admin-sidebar";
+import DashboardCards from "@/components/admin/dashboard-cards";
+import OccupancyChart from "@/components/admin/occupancy-chart";
 
 export default function AdminPage() {
   return (
@@ -15,7 +17,10 @@ export default function AdminPage() {
             </p>
           </div>
 
+          <DashboardCards />
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <OccupancyChart />
             <div className="space-y-6"></div>
           </div>
 
