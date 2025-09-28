@@ -80,20 +80,18 @@ export function EquipmentAlerts() {
                   <p className="text-sm font-medium text-foreground">
                     {alert.name}
                   </p>
-                  <p className="text-xs text-muted-foreground">{alert.issue}</p>
+                  <p className="text-xs text-muted-foreground py-1">
+                    {alert.issue}
+                  </p>
                   <p className="text-xs text-muted-foreground">
                     {alert.location}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center space-x-2">
+              <div className="justify-center items-center grid grid-cols-1 space-y-1.5">
                 <Badge
                   variant={
-                    alert.priority === "high"
-                      ? "destructive"
-                      : alert.priority === "medium"
-                      ? "secondary"
-                      : "outline"
+                    alert.priority === "high" ? "destructive" : "outline"
                   }
                 >
                   {alert.priority === "high"
