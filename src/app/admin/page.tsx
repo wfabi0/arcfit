@@ -4,6 +4,7 @@ import DashboardCards from "@/components/admin/dashboard-cards";
 import { EquipmentAlerts } from "@/components/admin/equipaments-alert";
 import OccupancyChart from "@/components/admin/occupancy-chart";
 import { PendingFeedback } from "@/components/admin/peding-feedback";
+import { RecentPayments } from "@/components/admin/recent-payments";
 
 export default function AdminPage() {
   return (
@@ -29,7 +30,9 @@ export default function AdminPage() {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6"></div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <RecentPayments />
+          </div>
         </main>
       </div>
     </div>
