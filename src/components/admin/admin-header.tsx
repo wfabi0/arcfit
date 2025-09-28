@@ -27,7 +27,11 @@ export default function AdminHeader() {
       </div>
 
       <div className="flex items-center space-x-4">
-        <Button variant={"ghost"} size="sm" className="relative">
+        <Button
+          variant={"ghost"}
+          size="sm"
+          className="hover:cursor-pointer relative"
+        >
           <Bell className="w-5 h-5" />
           <span className="absolute -top-1 -right-1 w-3 h-3 bg-destructive rounded-full text-xs flex items-center justify-center text-destructive-foreground">
             3
@@ -36,9 +40,12 @@ export default function AdminHeader() {
 
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+            <Button
+              variant="ghost"
+              className="hover:cursor-pointer relative h-8 w-8 rounded-full"
+            >
               <Avatar className="h-8 w-8">
-                <AvatarImage src="/admin-avatar.png" alt="Admin" />
+                <AvatarImage src="https://github.com/wfabi0.png" alt="Admin" />
                 <AvatarFallback>AD</AvatarFallback>
               </Avatar>
             </Button>
@@ -53,16 +60,16 @@ export default function AdminHeader() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem className="transition hover:duration-150">
               <User className="mr-2 h-4 w-4" />
               <span>Perfil</span>
             </DropdownMenuItem>
-            <DropdownMenuItem>
+            <DropdownMenuItem className="transition hover:duration-150">
               <Settings className="mr-2 h-4 w-4" />
               <span>Configurações</span>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem className="transition hover:duration-150">
               <LogOut className="mr-2 h-4 w-4" />
               <span>Sair</span>
             </DropdownMenuItem>
