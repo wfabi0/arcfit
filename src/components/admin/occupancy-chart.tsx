@@ -44,7 +44,7 @@ const chartConfig = {
 
 export default function OccupancyChart() {
   return (
-    <Card className="bg-card border-border">
+    <Card className="bg-card border-border h-auto">
       <CardHeader>
         <CardTitle className="text-foreground text-lg">
           Ocupação em Tempo Real
@@ -53,7 +53,7 @@ export default function OccupancyChart() {
           Taxa de ocupação ao longo do dia
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pl-0">
         <ChartContainer config={chartConfig} className="h-[300px] w-full">
           <AreaChart accessibilityLayer data={data}>
             <defs>
