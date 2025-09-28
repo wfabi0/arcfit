@@ -98,7 +98,9 @@ export default function TestimonialsSection() {
                         </div>
                       </div>
                       <blockquote className="text-lg font-semibold leading-relaxed mb-6 flex-1 flex items-center max-w-sm">
-                        "{testimonial.quote}"
+                        {"“"}
+                        {testimonial.quote}
+                        {"”"}
                       </blockquote>
                       <p className="text-sm font-medium text-muted-foreground">
                         {testimonial.name}
