@@ -1,53 +1,56 @@
-import { FastifyInstance, FastifyPluginOptions } from 'fastify';
-import { AuthController } from '@/controllers/auth.controller.js';
-import { authenticate } from '@/middlewares/auth.middleware.js';
-import { registrarSchema, loginSchema, perfilSchema } from '@/schemas/auth.schemas.js';
+import { AuthController } from "@/controllers/auth.controller.js";
+import { authenticate } from "@/middlewares/auth.middleware.js";
+import {
+  loginSchema,
+  perfilSchema,
+  registrarSchema,
+} from "@/schemas/auth.schemas.js";
+import { FastifyInstance, FastifyPluginOptions } from "fastify";
 
-export default async function authRoutes(app: FastifyInstance, options: FastifyPluginOptions) {
+export default async function authRoutes(
+  app: FastifyInstance,
+  options: FastifyPluginOptions
+) {
   const authController = new AuthController();
 
-  // Registrar usuário
-  app.post('/register', {
+  app.post("/register", {
     schema: registrarSchema,
     handler: authController.register,
   });
 
-  // Login
-  app.post('/login', {
+  app.post("/login", {
     schema: loginSchema,
     handler: authController.login,
   });
 
-  // Perfil do usuário (protegido)
-  app.get('/profile', {
+  app.get("/profile", {
     schema: perfilSchema,
     preHandler: [authenticate],
     handler: authController.profile,
   });
 
-  // Refresh token (protegido)
-  app.post('/refresh', {
+  app.post("/refresh", {
     schema: {
-      tags: ['Auth'],
-      summary: 'Renovar token JWT',
-      description: 'Renova o token JWT do usuário autenticado',
+      tags: ["Auth"],
+      summary: "Renovar token JWT",
+      description: "Renova o token JWT do usuário autenticado",
       security: [{ bearerAuth: [] }],
       response: {
         200: {
-          type: 'object',
+          type: "object",
           properties: {
-            sucesso: { type: 'boolean' },
-            mensagem: { type: 'string' },
+            sucesso: { type: "boolean" },
+            mensagem: { type: "string" },
             dados: {
-              type: 'object',
+              type: "object",
               properties: {
-                token: { type: 'string' },
+                token: { type: "string" },
               },
             },
           },
         },
         401: {
-          $ref: '#/components/schemas/ErrorResponse',
+          $ref: "#/components/schemas/ErrorResponse",
         },
       },
     },

@@ -77,6 +77,50 @@ export async function buildApp(): Promise<FastifyInstance> {
             description: "Token JWT para autenticação",
           },
         },
+        schemas: {
+          ErrorResponse: {
+            type: "object",
+            properties: {
+              sucesso: { type: "boolean", default: false },
+              erro: { type: "string" },
+              mensagem: { type: "string" },
+              detalhes: { type: "object" },
+            },
+            required: ["sucesso", "erro"],
+          },
+          SuccessResponse: {
+            type: "object",
+            properties: {
+              sucesso: { type: "boolean", default: true },
+              mensagem: { type: "string" },
+              dados: { type: "object" },
+            },
+            required: ["sucesso"],
+          },
+          Usuario: {
+            type: "object",
+            properties: {
+              id: { type: "string", format: "uuid" },
+              nome: { type: "string" },
+              email: { type: "string", format: "email" },
+              telefone: { type: "string", nullable: true },
+              tipo: {
+                type: "string",
+                enum: ["admin", "funcionario", "cliente"],
+              },
+              status: { type: "string", enum: ["ativo", "inativo"] },
+              createdAt: { type: "string", format: "date-time" },
+            },
+          },
+          AuthData: {
+            type: "object",
+            properties: {
+              usuario: { $ref: "#/components/schemas/Usuario" },
+              token: { type: "string" },
+            },
+            required: ["usuario", "token"],
+          },
+        },
       },
       tags: [
         { name: "Auth", description: "Endpoints de autenticação" },
@@ -88,7 +132,6 @@ export async function buildApp(): Promise<FastifyInstance> {
     },
   });
 
-  // Scalar API Reference Documentation
   await app.register(import("@scalar/fastify-api-reference"), {
     routePrefix: "/docs",
     configuration: {
@@ -97,12 +140,10 @@ export async function buildApp(): Promise<FastifyInstance> {
     },
   });
 
-  // JSON spec endpoint
   app.get("/docs.json", async () => {
     return app.swagger();
   });
 
-  // Health check
   app.get(
     "/health",
     {
@@ -130,17 +171,13 @@ export async function buildApp(): Promise<FastifyInstance> {
     }
   );
 
-  // API Routes
-  await app.register(import('@/routes/auth.routes.js'), { prefix: '/api/auth' });
-  // await app.register(import('@/routes/members.js'), { prefix: '/api/members' });
-  // await app.register(import('@/routes/plans.js'), { prefix: '/api/plans' });
-  // await app.register(import('@/routes/payments.js'), { prefix: '/api/payments' });
+  await app.register(import("@/routes/auth.routes.js"), {
+    prefix: "/api/auth",
+  });
 
-  // Global error handler
   app.setErrorHandler(async (error, request, reply) => {
     app.log.error(error);
 
-    // Validation errors
     if (error.validation) {
       return reply.status(400).send({
         success: false,
@@ -150,7 +187,6 @@ export async function buildApp(): Promise<FastifyInstance> {
       });
     }
 
-    // JWT errors
     if (error.message.includes("jwt")) {
       return reply.status(401).send({
         success: false,
@@ -159,7 +195,6 @@ export async function buildApp(): Promise<FastifyInstance> {
       });
     }
 
-    // Database errors
     if (error.message.includes("unique constraint")) {
       return reply.status(409).send({
         success: false,
@@ -168,7 +203,6 @@ export async function buildApp(): Promise<FastifyInstance> {
       });
     }
 
-    // Rate limit errors
     if (error.statusCode === 429) {
       return reply.status(429).send({
         success: false,
@@ -177,7 +211,6 @@ export async function buildApp(): Promise<FastifyInstance> {
       });
     }
 
-    // Default error response
     const statusCode = error.statusCode || 500;
     reply.status(statusCode).send({
       success: false,

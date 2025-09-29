@@ -1,36 +1,24 @@
-import { validarUsuarioSchema } from "@/db/schema";
-import { validarLoginSchema } from "@/db/schema/validators";
 import { FastifySchema } from "fastify";
-import zodToJsonSchema from "zod-to-json-schema";
 
 export const registrarSchema: FastifySchema = {
   tags: ["Auth"],
   summary: "Cadastrar novo usuário",
   description: "Cria uma nova conta de usuário no sistema",
-  body: zodToJsonSchema(validarUsuarioSchema),
+  body: {
+    type: "object",
+    properties: {
+      nome: { type: "string", minLength: 2, maxLength: 255 },
+      cpf: { type: "string", pattern: "^[0-9]{11}$" },
+      email: { type: "string", format: "email" },
+      senha: { type: "string", minLength: 6 },
+      telefone: { type: "string", nullable: true },
+    },
+    required: ["nome", "cpf", "email", "senha"],
+    additionalProperties: false,
+  },
   response: {
     201: {
-      type: "object",
-      properties: {
-        sucesso: { type: "boolean" },
-        mensagem: { type: "string" },
-        dados: {
-          type: "object",
-          properties: {
-            usuario: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                email: { type: "string" },
-                nome: { type: "string" },
-                telefone: { type: "string" },
-                criadoEm: { type: "string" },
-              },
-            },
-            token: { type: "string" },
-          },
-        },
-      },
+      $ref: "#/components/schemas/SuccessResponse",
     },
     400: {
       $ref: "#/components/schemas/ErrorResponse",
@@ -45,28 +33,18 @@ export const loginSchema: FastifySchema = {
   tags: ["Auth"],
   summary: "Fazer login",
   description: "Autentica um usuário e retorna token JWT",
-  body: zodToJsonSchema(validarLoginSchema),
+  body: {
+    type: "object",
+    properties: {
+      email: { type: "string", format: "email" },
+      senha: { type: "string", minLength: 6 },
+    },
+    required: ["email", "senha"],
+    additionalProperties: false,
+  },
   response: {
     200: {
-      type: "object",
-      properties: {
-        sucesso: { type: "boolean" },
-        mensagem: { type: "string" },
-        dados: {
-          type: "object",
-          properties: {
-            usuario: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                email: { type: "string" },
-                nome: { type: "string" },
-              },
-            },
-            token: { type: "string" },
-          },
-        },
-      },
+      $ref: "#/components/schemas/SuccessResponse",
     },
     401: {
       $ref: "#/components/schemas/ErrorResponse",
@@ -81,25 +59,7 @@ export const perfilSchema: FastifySchema = {
   security: [{ bearerAuth: [] }],
   response: {
     200: {
-      type: "object",
-      properties: {
-        sucesso: { type: "boolean" },
-        dados: {
-          type: "object",
-          properties: {
-            usuario: {
-              type: "object",
-              properties: {
-                id: { type: "string" },
-                email: { type: "string" },
-                nome: { type: "string" },
-                telefone: { type: "string" },
-                criadoEm: { type: "string" },
-              },
-            },
-          },
-        },
-      },
+      $ref: "#/components/schemas/SuccessResponse",
     },
     401: {
       $ref: "#/components/schemas/ErrorResponse",

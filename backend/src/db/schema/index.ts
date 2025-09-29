@@ -15,20 +15,9 @@ export * from "./tables/usuarios.js";
 export * from "./relations/index.js";
 
 export {
-  selectAcessoSchema,
-  selectAvaliacaoFisicaSchema,
-  selectCatracaSchema,
-  selectConfiguracaoSchema,
-  selectEquipamentoSchema,
-  selectFeedbackSchema,
-  selectManutencaoSchema,
-  selectMatriculaSchema,
-  selectPagamentoSchema,
-  selectPlanoSchema,
-  selectTreinoSchema,
-  selectUsuarioSchema,
   validarPlanoSchema,
   validarUsuarioSchema,
+  validarLoginSchema,
 } from "./validators/index.js";
 
 import { acessos } from "./tables/acessos.js";
