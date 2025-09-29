@@ -131,7 +131,7 @@ export async function buildApp(): Promise<FastifyInstance> {
   );
 
   // API Routes
-  // await app.register(import('@/routes/auth.js'), { prefix: '/api/auth' });
+  await app.register(import('@/routes/auth.routes.js'), { prefix: '/api/auth' });
   // await app.register(import('@/routes/members.js'), { prefix: '/api/members' });
   // await app.register(import('@/routes/plans.js'), { prefix: '/api/plans' });
   // await app.register(import('@/routes/payments.js'), { prefix: '/api/payments' });

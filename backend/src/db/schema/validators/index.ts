@@ -115,6 +115,11 @@ export const validarUsuarioSchema = z.object({
   senhaHash: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
 });
 
+export const validarLoginSchema = z.object({
+  email: z.string().email("Email inválido"),
+  senhaHash: z.string().min(6, "Senha deve ter pelo menos 6 caracteres"),
+});
+
 export const validarPlanoSchema = z.object({
   nome: z.string().min(2, "Nome do plano obrigatório"),
   valor: z
