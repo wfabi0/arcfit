@@ -26,8 +26,10 @@ export async function buildApp(): Promise<FastifyInstance> {
 
   // CORS
   await app.register(import("@fastify/cors"), {
-    origin: [env.FRONTEND_URL],
+    origin: env.NODE_ENV === "development" ? true : [env.FRONTEND_URL],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization", "Accept"],
   });
 
   // Rate Limiting
