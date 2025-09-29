@@ -1,4 +1,36 @@
 import { FastifySchema } from "fastify";
+import { errorResponseSchema } from "./common.schemas";
+
+// Schema base para usuário
+const usuarioSchema = {
+  type: "object",
+  properties: {
+    id: { type: "string", format: "uuid" },
+    nome: { type: "string" },
+    email: { type: "string", format: "email" },
+    telefone: { type: "string", nullable: true },
+    tipo: { type: "string", enum: ["admin", "funcionario", "cliente"] },
+    status: { type: "string", enum: ["ativo", "inativo"] },
+    createdAt: { type: "string", format: "date-time" },
+  },
+};
+
+const authSuccessResponse = {
+  type: "object",
+  properties: {
+    sucesso: { type: "boolean", default: true },
+    mensagem: { type: "string" },
+    dados: {
+      type: "object",
+      properties: {
+        usuario: usuarioSchema,
+        token: { type: "string" },
+      },
+      required: ["usuario", "token"],
+    },
+  },
+  required: ["sucesso"],
+};
 
 export const registrarSchema: FastifySchema = {
   tags: ["Auth"],
@@ -17,15 +49,9 @@ export const registrarSchema: FastifySchema = {
     additionalProperties: false,
   },
   response: {
-    201: {
-      $ref: "#/components/schemas/SuccessResponse",
-    },
-    400: {
-      $ref: "#/components/schemas/ErrorResponse",
-    },
-    409: {
-      $ref: "#/components/schemas/ErrorResponse",
-    },
+    201: authSuccessResponse,
+    400: errorResponseSchema,
+    409: errorResponseSchema,
   },
 };
 
@@ -43,12 +69,8 @@ export const loginSchema: FastifySchema = {
     additionalProperties: false,
   },
   response: {
-    200: {
-      $ref: "#/components/schemas/SuccessResponse",
-    },
-    401: {
-      $ref: "#/components/schemas/ErrorResponse",
-    },
+    200: authSuccessResponse,
+    401: errorResponseSchema,
   },
 };
 
@@ -59,10 +81,20 @@ export const perfilSchema: FastifySchema = {
   security: [{ bearerAuth: [] }],
   response: {
     200: {
-      $ref: "#/components/schemas/SuccessResponse",
+      type: "object",
+      properties: {
+        sucesso: { type: "boolean", default: true },
+        mensagem: { type: "string" },
+        dados: {
+          type: "object",
+          properties: {
+            usuario: usuarioSchema,
+          },
+          required: ["usuario"],
+        },
+      },
+      required: ["sucesso"],
     },
-    401: {
-      $ref: "#/components/schemas/ErrorResponse",
-    },
+    401: errorResponseSchema,
   },
 };

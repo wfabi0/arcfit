@@ -48,8 +48,15 @@ export class AuthController {
   async profile(request: FastifyRequest, reply: FastifyReply) {
     try {
       const user = request.user;
-      const authService = new AuthService(request.server, request);
 
+      if (!user) {
+        return reply.status(401).send({
+          sucesso: false,
+          erro: "Token não fornecido",
+        });
+      }
+
+      const authService = new AuthService(request.server, request);
       const profile = await authService.getUserProfile(user.usuarioId);
 
       return reply.status(200).send({
@@ -68,7 +75,13 @@ export class AuthController {
   async refreshToken(request: FastifyRequest, reply: FastifyReply) {
     try {
       const user = request.user;
-      const authService = new AuthService(request.server, request);
+
+      if (!user) {
+        return reply.status(401).send({
+          sucesso: false,
+          erro: "Token não fornecido",
+        });
+      }
 
       const token = await request.server.jwt.sign({
         usuarioId: user.usuarioId,

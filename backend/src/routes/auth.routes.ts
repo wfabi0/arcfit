@@ -39,18 +39,35 @@ export default async function authRoutes(
         200: {
           type: "object",
           properties: {
-            sucesso: { type: "boolean" },
+            sucesso: { type: "boolean", default: true },
             mensagem: { type: "string" },
             dados: {
               type: "object",
               properties: {
                 token: { type: "string" },
               },
+              required: ["token"],
             },
           },
+          required: ["sucesso"],
         },
         401: {
-          $ref: "#/components/schemas/ErrorResponse",
+          type: "object",
+          properties: {
+            sucesso: { type: "boolean", default: false },
+            erro: { type: "string" },
+            mensagem: { type: "string" },
+          },
+          required: ["sucesso", "erro"],
+        },
+        500: {
+          type: "object",
+          properties: {
+            sucesso: { type: "boolean", default: false },
+            erro: { type: "string" },
+            mensagem: { type: "string" },
+          },
+          required: ["sucesso", "erro"],
         },
       },
     },
