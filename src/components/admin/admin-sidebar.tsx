@@ -132,7 +132,7 @@ export default function AdminSidebar() {
           variant="ghost"
           size="sm"
           onClick={() => setCollapsed(!collapsed)}
-          className="text-sidebar-foreground hover:bg-sidebar-foreground"
+          className="text-sidebar-foreground hover:bg-sidebar-foreground hover:cursor-pointer"
         >
           {collapsed ? (
             <ChevronRight className="w-4 h-4" />
